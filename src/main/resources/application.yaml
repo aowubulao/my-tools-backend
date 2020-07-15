@@ -1,0 +1,7 @@
+server:
+  port: 7093
+spring:
+  application:
+    name: my-tools-serivce
+  main:
+    allow-bean-definition-overriding: true

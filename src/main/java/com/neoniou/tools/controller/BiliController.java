@@ -2,6 +2,7 @@ package com.neoniou.tools.controller;
 
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
+import com.neoniou.tools.controller.pojo.DanMuFilter;
 import com.neoniou.tools.exception.NeoResult;
 import com.neoniou.tools.pojo.DanMuInfo;
 import com.neoniou.tools.pojo.PageList;
@@ -21,13 +22,13 @@ import java.util.List;
  * @date 2021/2/14
  */
 @RestController
-@RequestMapping("/tools/bili")
+@RequestMapping("/tools/v1/bili")
 public class BiliController {
 
     @Autowired
     private BiliService biliService;
 
-    @GetMapping("/getCover")
+    @GetMapping("/cover")
     public ResponseEntity<NeoResult> getCover(@RequestParam("code") String code) {
         String coverUrl = biliService.getCover(code);
         if (coverUrl == null) {
@@ -37,7 +38,7 @@ public class BiliController {
         }
     }
 
-    @GetMapping("/getPageList")
+    @GetMapping("/video/page")
     public ResponseEntity<NeoResult> getPageList(@RequestParam("code") String code) {
         List<PageList> pageLists = biliService.getPageList(code);
         if (pageLists == null) {
@@ -48,9 +49,9 @@ public class BiliController {
         }
     }
 
-    @GetMapping("/getDanMu")
-    public ResponseEntity<NeoResult> getDanMu(@RequestParam("cid") String cid) {
-        List<DanMuInfo> danMuInfos = biliService.getDanMu(cid);
+    @GetMapping("/video/danmu")
+    public ResponseEntity<NeoResult> getDanMu(DanMuFilter danMuFilter) {
+        List<DanMuInfo> danMuInfos = biliService.getDanMu(danMuFilter);
         if (danMuInfos == null) {
             return ResponseEntity.ok(new NeoResult("该视频没有弹幕或是cid错误！", -1));
         } else {
@@ -59,7 +60,7 @@ public class BiliController {
         }
     }
 
-    @GetMapping("/crcReverse")
+    @GetMapping("/crc_reverse")
     public ResponseEntity<NeoResult> getCrcReverse(@RequestParam("crc") String crc) {
         String result = BiliCrcUtil.calculateOrigin(crc);
         if (result == null) {

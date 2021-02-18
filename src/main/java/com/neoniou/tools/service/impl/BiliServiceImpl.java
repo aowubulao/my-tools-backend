@@ -5,6 +5,7 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.neoniou.tools.controller.pojo.DanMuFilter;
 import com.neoniou.tools.pojo.DanMuInfo;
 import com.neoniou.tools.pojo.PageList;
 import com.neoniou.tools.service.BiliService;
@@ -98,8 +99,8 @@ public class BiliServiceImpl implements BiliService {
     }
 
     @Override
-    public List<DanMuInfo> getDanMu(String cid) {
-        String body = HttpRequest.get(XML_DAN_MU + cid)
+    public List<DanMuInfo> getDanMu(DanMuFilter filter) {
+        String body = HttpRequest.get(XML_DAN_MU + filter.getCid())
                 .execute()
                 .body();
         if (body.contains(DanMuInfo.D_TAG)) {
@@ -107,15 +108,19 @@ public class BiliServiceImpl implements BiliService {
             List<DanMuInfo> list = new ArrayList<>(danMuList.size());
             for (String danMu : danMuList) {
                 String content = danMu.substring(danMu.indexOf(DanMuInfo.CONTENT_PREFIX) + 2, danMu.indexOf(DanMuInfo.CONTENT_SUFFIX));
+                if (filter.getContent() != null && !content.contains(filter.getContent())) {
+                    continue;
+                }
                 String param = danMu.substring(danMu.indexOf(DanMuInfo.PARAM_SUFFIX) + 3, danMu.indexOf(DanMuInfo.CONTENT_PREFIX));
 
                 String[] params = param.split(DanMuInfo.SPLIT);
                 String appearTime = DanMuInfo.generateAppearTime(params[0]);
                 String sendTime = DanMuInfo.generateSendTime(params[4]);
 
-                DanMuInfo danMuInfo = new DanMuInfo(appearTime, params[1], params[2], params[3], sendTime, params[6], content);
+                DanMuInfo danMuInfo = new DanMuInfo(appearTime, params[0], params[2], params[3], sendTime, params[6], content);
                 list.add(danMuInfo);
             }
+            list.sort(Comparator.comparingDouble(x -> Double.parseDouble(x.getType())));
             return list;
         }
 

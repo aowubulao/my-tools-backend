@@ -54,12 +54,16 @@ public class DanMuInfo {
         if (second > HOUR) {
             int hour = second / HOUR;
             sb.append(hour).append("时");
-            second -= HOUR;
+            while (second > HOUR) {
+                second -= HOUR;
+            }
         }
         if (second > MINUTE) {
             int minute = second / MINUTE;
             sb.append(minute).append("分");
-            second -= MINUTE;
+            while (second > MINUTE) {
+                second -= MINUTE;
+            }
         }
         sb.append(second).append("秒");
         return sb.toString();

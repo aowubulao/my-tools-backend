@@ -1,5 +1,6 @@
 package com.neoniou.tools.service;
 
+import com.neoniou.tools.controller.pojo.DanMuFilter;
 import com.neoniou.tools.pojo.DanMuInfo;
 import com.neoniou.tools.pojo.PageList;
 import org.springframework.stereotype.Service;
@@ -31,8 +32,8 @@ public interface BiliService {
     /**
      * 根据cid获取弹幕
      *
-     * @param cid 视频cid
+     * @param filter 视频cid以及过滤器
      * @return 弹幕列表 or null
      */
-    List<DanMuInfo> getDanMu(String cid);
+    List<DanMuInfo> getDanMu(DanMuFilter filter);
 }

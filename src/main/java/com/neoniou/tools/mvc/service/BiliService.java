@@ -1,9 +1,8 @@
-package com.neoniou.tools.service;
+package com.neoniou.tools.mvc.service;
 
-import com.neoniou.tools.controller.pojo.DanMuFilter;
-import com.neoniou.tools.pojo.DanMuInfo;
-import com.neoniou.tools.pojo.PageList;
-import org.springframework.stereotype.Service;
+import com.neoniou.tools.mvc.controller.pojo.DanMuFilter;
+import com.neoniou.tools.mvc.model.DanMuInfo;
+import com.neoniou.tools.mvc.model.PageList;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.neoniou.tools.service.impl;
+package com.neoniou.tools.mvc.service.impl;
 
 import cn.hutool.core.io.file.FileReader;
 import cn.hutool.core.io.file.FileWriter;
@@ -7,8 +7,8 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.neoniou.tools.exception.NeoException;
 import com.neoniou.tools.exception.NeoResult;
-import com.neoniou.tools.pojo.ShortLink;
-import com.neoniou.tools.service.ShortLinkService;
+import com.neoniou.tools.mvc.model.ShortLink;
+import com.neoniou.tools.mvc.service.ShortLinkService;
 import com.neoniou.tools.utils.ThreadUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

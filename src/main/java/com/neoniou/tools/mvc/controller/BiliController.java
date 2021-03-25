@@ -1,12 +1,12 @@
-package com.neoniou.tools.controller;
+package com.neoniou.tools.mvc.controller;
 
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
-import com.neoniou.tools.controller.pojo.DanMuFilter;
 import com.neoniou.tools.exception.NeoResult;
-import com.neoniou.tools.pojo.DanMuInfo;
-import com.neoniou.tools.pojo.PageList;
-import com.neoniou.tools.service.BiliService;
+import com.neoniou.tools.mvc.controller.pojo.DanMuFilter;
+import com.neoniou.tools.mvc.model.DanMuInfo;
+import com.neoniou.tools.mvc.model.PageList;
+import com.neoniou.tools.mvc.service.BiliService;
 import com.neoniou.tools.utils.BiliCrcUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

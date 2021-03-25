@@ -1,4 +1,4 @@
-package com.neoniou.tools.service;
+package com.neoniou.tools.mvc.service;
 
 /**
  * @author Neo.Zzj

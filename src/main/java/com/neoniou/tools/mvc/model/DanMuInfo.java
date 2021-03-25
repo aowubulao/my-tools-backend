@@ -1,4 +1,4 @@
-package com.neoniou.tools.pojo;
+package com.neoniou.tools.mvc.model;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.text.StrBuilder;
